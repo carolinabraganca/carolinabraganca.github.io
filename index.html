@@ -1,134 +1,346 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carolina Bragança — Portfólio</title>
-  <meta name="description" content="Portfólio de Carolina Bragança: projetos, experiência e contato.">
-  <meta property="og:title" content="Carolina Bragança — Portfólio">
-  <meta property="og:description" content="Projetos, experiência e contato.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://carolinabraganca.github.io/">
-  <link rel="stylesheet" href="assets/css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carolina Bragança — Automação &amp; IA</title>
+<meta name="description" content="Portfólio de Carolina Bragança: automação de processos e inteligência artificial.">
+<meta property="og:title" content="Carolina Bragança — Automação &amp; IA">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://carolinabraganca.github.io/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #1E93AB; --cream: #F3F2EC; --teal-d: #15707F;
+    --display: "Anton", Impact, "Arial Narrow", sans-serif;
+    --text: "Montserrat", system-ui, sans-serif;
+    --pad: clamp(20px, 5vw, 72px);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  @media (pointer: coarse) { html { scroll-snap-type: y proximity; } #home > .slide { scroll-snap-align: start; } }
+  body { background: var(--cream); color: var(--teal); font-family: var(--text); font-weight: 500; line-height: 1.6; }
+  a { color: inherit; text-decoration: none; }
+  ul, ol { list-style: none; }
+  :focus-visible { outline: 3px solid currentColor; outline-offset: 4px; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 400; text-transform: uppercase; line-height: .98; letter-spacing: .005em; }
+  .giant { font-size: clamp(4rem, 15.5vw, 14rem); }
+  .big { font-size: clamp(3.4rem, 11vw, 10rem); }
+  p { max-width: 56ch; }
+
+  /* Cada seção é uma "lâmina", como no modelo */
+  .slide { min-height: 100vh; padding: 28px var(--pad) 40px; display: flex; flex-direction: column; position: relative; }
+  .cream { background: var(--cream); color: var(--teal); }
+  .cream p { color: var(--teal-d); }
+  .teal { background: var(--teal); color: var(--cream); }
+  .corners { display: flex; justify-content: space-between; font-weight: 700; font-size: .95rem; }
+  .body { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 40px 0; }
+  .foot { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; font-weight: 700; font-size: .95rem; }
+  .chev { display: inline-block; width: 56px; transition: transform .2s; }
+  .chev:hover { transform: translateX(8px); }
+  .chev svg { display: block; width: 100%; fill: currentColor; }
+  .ph { border-radius: 18px; background: linear-gradient(135deg, #c9cfd1, #9aa7ab); display: grid; place-items: center; color: #fff; font-size: .8rem; font-weight: 600; text-align: center; }
+  .btn { display: inline-block; padding: 14px 28px; border-radius: 999px; border: 2px solid currentColor; font-weight: 700; transition: background .2s, color .2s; }
+  .cream .btn:hover { background: var(--teal); color: var(--cream); border-color: var(--teal); }
+  .teal .btn:hover { background: var(--cream); color: var(--teal); border-color: var(--cream); }
+
+  /* Menu */
+  .menu { position: fixed; top: 0; left: 0; right: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center; padding: 16px var(--pad); font-weight: 700; font-size: .95rem; background: var(--cream); color: var(--teal); border-bottom: 2px solid var(--teal); }
+  .menu ul { display: flex; gap: clamp(14px, 3vw, 36px); }
+  .menu a:hover { text-decoration: underline; text-underline-offset: 6px; }
+  .slide > .corners { visibility: hidden; } /* o menu fixo faz o papel dos cantos */
+
+  /* Capa */
+  .cover .body { align-items: center; text-align: center; }
+  .cover h1 { position: relative; }
+  .cover h1 { display: inline-block; text-align: left; padding-right: clamp(40px, 7vw, 110px); }
+  .cover .ph { position: absolute; right: 0; top: 2%; width: clamp(90px, 15vw, 220px); aspect-ratio: 3 / 4; transform: translate(34%, 0) rotate(7deg); text-transform: none; font-family: var(--text); letter-spacing: 0; box-shadow: 0 18px 40px rgba(0,0,0,.25); }
+  .cover .sub { width: min(100%, 62vw); display: flex; justify-content: space-between; margin-top: clamp(24px, 3.6vw, 60px); font-weight: 700; }
+
+  /* Duas colunas */
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 6vw, 96px); align-items: center; }
+  .two .right { text-align: right; }
+  .two p { font-size: 1.05rem; text-align: justify; }
+  .two .ph { aspect-ratio: 16 / 7; margin-top: 24px; }
+
+  /* Metade creme, metade azul */
+  .split { padding: 0; flex-direction: row; }
+  .split > div { flex: 1; padding: 96px var(--pad) 56px; display: flex; flex-direction: column; justify-content: center; gap: 24px; }
+  .split .teal { text-align: right; align-items: flex-end; }
+  .split p { text-align: justify; }
+
+  /* Como eu trabalho: nós circulares recortados na faixa azul, ligados por fios tracejados */
+  .work { padding-bottom: 0; }
+  .work h2 { text-align: center; margin: auto 0 clamp(24px, 3vw, 48px); padding-top: 72px; }
+  .flow-band { margin: 0 calc(-1 * var(--pad)); background: linear-gradient(to bottom, var(--cream) 42%, var(--teal) 42%); }
+  .nodes { --d: clamp(160px, 15.2vw, 224px); --s: calc(var(--d) * .18); display: flex; align-items: center; justify-content: center; padding: calc(var(--s) / 2 + 8px) 0; }
+  .node { flex: none; width: var(--d); height: var(--d); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 calc(var(--d) * .11); background: var(--cream); color: var(--teal); transform: translateY(calc(var(--s) / 2)); }
+  .node:nth-child(4n+3) { background: var(--teal); color: var(--cream); transform: translateY(calc(var(--s) / -2)); }
+  .node small { font-weight: 700; font-size: calc(var(--d) * .07); letter-spacing: .1em; }
+  .node h3 { font-size: calc(var(--d) * .098); line-height: 1.1; margin: .3em 0 .45em; }
+  .node p { font-size: calc(var(--d) * .062); line-height: 1.4; color: inherit !important; }
+  .wire { position: relative; z-index: 1; flex: 1 1 0; min-width: 18px; max-width: 56px; height: var(--s); }
+  .wire:nth-child(4n) { transform: scaleY(-1); }
+  .wire svg { display: block; width: 100%; height: 100%; overflow: visible; }
+  .wire path { fill: none; vector-effect: non-scaling-stroke; }
+  .wire .case { stroke: var(--cream); stroke-width: 7; }
+  .wire .dash { stroke: var(--teal); stroke-width: 3; stroke-dasharray: 7 7; animation: flow 1s linear infinite; }
+  .wire .v { display: none; }
+  @keyframes flow { to { stroke-dashoffset: -14; } }
+  .wire::before, .wire::after { content: ""; position: absolute; width: 14px; height: 14px; border-radius: 50%; background: var(--cream); border: 3px solid var(--teal); }
+  .wire::before { left: -7px; bottom: -7px; }
+  .wire::after { right: -7px; top: -7px; }
+  .work .foot { margin: 0 calc(-1 * var(--pad)); padding: 32px var(--pad); background: var(--teal); color: var(--cream); align-items: center; }
+  @media (max-width: 1000px) {
+    .flow-band { background: var(--teal); padding: 40px var(--pad) 8px; }
+    .nodes { --d: 0px; flex-direction: column; align-items: stretch; max-width: 430px; margin: 0 auto; padding: 0; }
+    .node { width: 62%; height: auto; aspect-ratio: 1; padding: 0 7%; transform: none !important; margin-right: auto; border: 4px solid var(--cream); }
+    .node:nth-child(4n+3) { margin: 0 0 0 auto; }
+    .node small { font-size: .95rem; }
+    .node h3 { font-size: clamp(1.15rem, 5vw, 1.6rem); }
+    .node p { font-size: clamp(.78rem, 3.2vw, .95rem); }
+    .wire { flex: none; max-width: none; width: 38%; height: 60px; margin: -8px 0 -8px 31%; }
+    .wire:nth-child(4n) { transform: scaleX(-1); }
+    .wire .h { display: none; }
+    .wire .v { display: inline; }
+    .wire::before { left: -7px; top: -7px; bottom: auto; }
+    .wire::after { right: -7px; bottom: -7px; top: auto; }
+  }
+  /* Projetos: índice numerado */
+  .index { margin-top: 32px; border-bottom: 3px solid var(--teal); }
+  .index a { display: grid; grid-template-columns: clamp(48px, 8vw, 110px) 1fr auto 56px; align-items: center; gap: 20px; padding: 18px 12px; border-top: 3px solid var(--teal); transition: background .2s, color .2s, padding .2s; }
+  .index .n { font: 400 clamp(1.6rem, 3.6vw, 3rem) var(--display); }
+  .index h3 { font-size: clamp(1.6rem, 4.2vw, 3.6rem); }
+  .index p { font-size: .95rem; margin-top: 4px; transition: color .2s; }
+  .index .tag { font-weight: 700; font-size: .85rem; white-space: nowrap; }
+  .index .chev { width: 40px; opacity: 0; }
+  .index a:hover, .index a:focus-visible { background: var(--teal); color: var(--cream); padding-left: 28px; }
+  .index a:hover p { color: var(--cream); }
+  .index a:hover .chev { opacity: 1; }
+
+  /* Experiência */
+  .xp { margin-top: 32px; border-bottom: 2px solid var(--cream); }
+  .xp li { display: grid; grid-template-columns: 200px 1fr; gap: 24px; padding: 22px 0; border-top: 2px solid var(--cream); align-items: baseline; }
+  .xp h3 { font-size: clamp(1.4rem, 2.8vw, 2.2rem); }
+  .xp span { font-weight: 700; }
+
+  /* Contato */
+  .contact .body { justify-content: space-between; }
+  .contact dl { align-self: flex-end; display: grid; grid-template-columns: auto auto; gap: 22px 40px; text-align: right; }
+  .contact dt { font-weight: 700; font-size: 1.1rem; }
+  .contact dd a:hover { text-decoration: underline; text-underline-offset: 5px; }
+  .thanks .body { align-items: center; text-align: center; }
+
+  /* Página de projeto */
+  .meta { display: flex; flex-wrap: wrap; gap: 18px 56px; margin-top: 32px; }
+  .meta dt { font-weight: 700; font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; }
+  .meta dd { font-weight: 600; color: var(--teal-d); }
+  .gallery { display: grid; grid-template-columns: 1.4fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 10px; height: clamp(260px, 44vw, 520px); margin-top: 40px; }
+  .gallery .ph:first-child { grid-row: span 2; }
+  .gallery .ph:nth-child(2) { grid-column: span 2; }
+  .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 4vw, 56px); }
+  .cols h3 { font-size: clamp(2rem, 4.5vw, 3.6rem); margin-bottom: 12px; }
+  .nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 64px; padding-top: 40px; border-top: 2px solid var(--cream); }
+  .nums b { display: block; font: 400 clamp(3rem, 8vw, 7rem)/1 var(--display); }
+
+  .view { display: none; }
+  .view.on { display: block; }
+
+  @media (max-width: 780px) {
+    .menu ul li.opt { display: none; }
+    .two, .cols, .nums { grid-template-columns: 1fr; }
+    .two .right { text-align: left; order: -1; }
+    .split { flex-direction: column; }
+    .split > div { padding: 72px var(--pad) 48px; }
+    .split .teal { text-align: left; align-items: flex-start; }
+    .cover .sub { width: 100%; flex-direction: column; gap: 4px; }
+    .cover h1 { display: flex; flex-direction: column-reverse; align-items: center; padding: 0; text-align: center; }
+    .cover .ph { position: static; width: 130px; transform: rotate(5deg); margin-bottom: 28px; }
+    .index a { grid-template-columns: 44px 1fr; }
+    .index .tag, .index .chev { display: none; }
+    .xp li { grid-template-columns: 1fr; gap: 4px; }
+    .contact dl { grid-template-columns: 1fr; align-self: flex-start; text-align: left; gap: 14px; }
+    .gallery { grid-template-columns: 1fr 1fr; height: 300px; }
+    .gallery .ph:first-child { grid-row: auto; grid-column: span 2; }
+    .gallery .ph:nth-child(2) { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+</style>
 </head>
 <body>
-  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-  <header class="site-header">
-    <nav class="nav container" aria-label="Principal">
-      <a class="nav__brand" href="#inicio">Carolina Bragança</a>
-      <button class="nav__toggle" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav__links" id="menu">
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#projetos">Projetos</a></li>
-        <li><a href="#experiencia">Experiência</a></li>
-        <li><a href="#habilidades">Habilidades</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
-    </nav>
-  </header>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="chev" viewBox="0 0 56 36"><path d="M0 0h12l16 18-16 18H0l16-18z"/><path d="M24 0h12l16 18-16 18H24l16-18z"/></symbol>
+</svg>
 
-  <main id="conteudo">
-    <section class="hero container" id="inicio">
-      <p class="hero__eyebrow">Olá, eu sou</p>
-      <h1 class="hero__title">Carolina Bragança</h1>
-      <!-- TODO: ajustar título profissional -->
-      <p class="hero__role">Automação &amp; Inteligência Artificial</p>
-      <!-- TODO: frase de apresentação -->
-      <p class="hero__lead">Uma frase curta sobre o que você faz, para quem e qual resultado entrega.</p>
-      <div class="hero__actions">
-        <a class="btn btn--primary" href="#projetos">Ver projetos</a>
-        <a class="btn btn--ghost" href="#contato">Entrar em contato</a>
-      </div>
-    </section>
+<nav class="menu" aria-label="Principal">
+  <a href="#inicio">Portfólio</a>
+  <ul>
+    <li class="opt"><a href="#como">Como trabalho</a></li>
+    <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
 
-    <section class="section container" id="sobre">
-      <h2 class="section__title">Sobre</h2>
-      <div class="about">
-        <div class="about__photo" role="img" aria-label="Foto de Carolina Bragança (placeholder)">CB</div>
-        <div class="about__text">
-          <!-- TODO: texto sobre você -->
-          <p>Parágrafo de apresentação: sua trajetória, o que te move e no que você está focada hoje.</p>
-          <p>Segundo parágrafo: diferenciais, áreas de interesse e o tipo de desafio que você procura.</p>
-        </div>
-      </div>
-    </section>
+<!-- ===== SITE ===== -->
+<main class="view on" id="home">
 
-    <section class="section container" id="projetos">
-      <h2 class="section__title">Projetos</h2>
-      <!-- TODO: substituir pelos projetos reais -->
-      <div class="grid">
-        <article class="card">
-          <h3 class="card__title">Projeto 1</h3>
-          <p class="card__text">Qual problema resolve, como foi construído e qual foi o resultado.</p>
-          <ul class="tags"><li>Tag</li><li>Tag</li></ul>
-          <a class="card__link" href="#">Ver detalhes →</a>
-        </article>
-        <article class="card">
-          <h3 class="card__title">Projeto 2</h3>
-          <p class="card__text">Qual problema resolve, como foi construído e qual foi o resultado.</p>
-          <ul class="tags"><li>Tag</li><li>Tag</li></ul>
-          <a class="card__link" href="#">Ver detalhes →</a>
-        </article>
-        <article class="card">
-          <h3 class="card__title">Projeto 3</h3>
-          <p class="card__text">Qual problema resolve, como foi construído e qual foi o resultado.</p>
-          <ul class="tags"><li>Tag</li><li>Tag</li></ul>
-          <a class="card__link" href="#">Ver detalhes →</a>
-        </article>
-      </div>
-    </section>
-
-    <section class="section container" id="experiencia">
-      <h2 class="section__title">Experiência</h2>
-      <!-- TODO: substituir pela experiência real -->
-      <ol class="timeline">
-        <li class="timeline__item">
-          <span class="timeline__period">Ano — Atual</span>
-          <h3 class="timeline__role">Cargo · Empresa</h3>
-          <p>Principais responsabilidades e resultados.</p>
-        </li>
-        <li class="timeline__item">
-          <span class="timeline__period">Ano — Ano</span>
-          <h3 class="timeline__role">Cargo · Empresa</h3>
-          <p>Principais responsabilidades e resultados.</p>
-        </li>
-      </ol>
-    </section>
-
-    <section class="section container" id="habilidades">
-      <h2 class="section__title">Habilidades</h2>
-      <!-- TODO: substituir pelas habilidades reais -->
-      <ul class="tags tags--lg">
-        <li>Habilidade</li>
-        <li>Habilidade</li>
-        <li>Habilidade</li>
-        <li>Habilidade</li>
-        <li>Habilidade</li>
-        <li>Habilidade</li>
-      </ul>
-    </section>
-
-    <section class="section container" id="contato">
-      <h2 class="section__title">Contato</h2>
-      <p class="contact__lead">Vamos conversar? Me chame por um dos canais abaixo.</p>
-      <!-- TODO: preencher os links -->
-      <ul class="contact">
-        <li><a class="btn btn--ghost" href="#">E-mail</a></li>
-        <li><a class="btn btn--ghost" href="#" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a class="btn btn--ghost" href="https://github.com/carolinabraganca" target="_blank" rel="noopener">GitHub</a></li>
-      </ul>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <p>© <span id="ano"></span> Carolina Bragança</p>
+  <!-- Capa -->
+  <section class="slide cream cover" id="inicio">
+    <div class="corners"><span>Portfólio</span><span>Automação &amp; IA</span></div>
+    <div class="body">
+      <h1 class="giant">Carolina<br>Bragança<span class="ph">sua foto</span></h1>
+      <div class="sub"><span>Automação &amp; Inteligência Artificial</span><span>carolinabraganca.github.io</span></div>
     </div>
-  </footer>
+    <div class="foot"><span></span><a class="chev" href="#como" aria-label="Próxima seção"><svg viewBox="0 0 56 36"><use href="#chev"/></svg></a></div>
+  </section>
 
-  <script src="assets/js/main.js"></script>
+  <!-- Como eu trabalho (fluxo de automação em 5 etapas) -->
+  <section class="slide cream work" id="como">
+    <div class="corners"><span>Portfólio</span><span>Como trabalho</span></div>
+    <h2 class="big">Como trabalho</h2>
+    <div class="flow-band">
+      <div class="nodes">
+      <div class="node"><small>01</small><h3>Diagnóstico &amp; Mapeamento</h3><p>Imersão na área para entender o fluxo atual e os gargalos.</p></div>
+      <span class="wire" aria-hidden="true"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><g class="h"><path class="case" d="M0,100 C50,100 50,0 100,0"/><path class="dash" d="M0,100 C50,100 50,0 100,0"/></g><g class="v"><path class="case" d="M0,0 C0,60 100,40 100,100"/><path class="dash" d="M0,0 C0,60 100,40 100,100"/></g></svg></span>
+      <div class="node"><small>02</small><h3>Viabilidade &amp; Desenho</h3><p>Análise de ROI e desenho do novo fluxo.</p></div>
+      <span class="wire" aria-hidden="true"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><g class="h"><path class="case" d="M0,100 C50,100 50,0 100,0"/><path class="dash" d="M0,100 C50,100 50,0 100,0"/></g><g class="v"><path class="case" d="M0,0 C0,60 100,40 100,100"/><path class="dash" d="M0,0 C0,60 100,40 100,100"/></g></svg></span>
+      <div class="node"><small>03</small><h3>Engenharia de IA &amp; Dev</h3><p>Agentes de IA, APIs e fluxos low-code.</p></div>
+      <span class="wire" aria-hidden="true"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><g class="h"><path class="case" d="M0,100 C50,100 50,0 100,0"/><path class="dash" d="M0,100 C50,100 50,0 100,0"/></g><g class="v"><path class="case" d="M0,0 C0,60 100,40 100,100"/><path class="dash" d="M0,0 C0,60 100,40 100,100"/></g></svg></span>
+      <div class="node"><small>04</small><h3>Treinamento &amp; Adoção</h3><p>Homologação com usuários e capacitação do time.</p></div>
+      <span class="wire" aria-hidden="true"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><g class="h"><path class="case" d="M0,100 C50,100 50,0 100,0"/><path class="dash" d="M0,100 C50,100 50,0 100,0"/></g><g class="v"><path class="case" d="M0,0 C0,60 100,40 100,100"/><path class="dash" d="M0,0 C0,60 100,40 100,100"/></g></svg></span>
+      <div class="node"><small>05</small><h3>Governança &amp; Melhoria</h3><p>KPIs de eficiência e ajustes contínuos.</p></div>
+      </div>
+    </div>
+    <div class="foot"><span>Do diagnóstico à melhoria contínua</span><a class="chev" href="#projetos" aria-label="Próxima seção"><svg viewBox="0 0 56 36"><use href="#chev"/></svg></a></div>
+  </section>
+
+  <!-- Projetos -->
+  <section class="slide cream" id="projetos">
+    <div class="corners"><span>Portfólio</span><span>Projetos</span></div>
+    <div class="body">
+      <h2 class="giant">Projetos</h2>
+      <ol class="index">
+        <li><a href="#projeto"><span class="n">01</span><div><h3>Nome do projeto um</h3><p>Uma linha sobre o problema resolvido.</p></div><span class="tag">Automação</span><span class="chev"><svg viewBox="0 0 56 36"><use href="#chev"/></svg></span></a></li>
+        <li><a href="#projeto"><span class="n">02</span><div><h3>Nome do projeto dois</h3><p>Uma linha sobre o problema resolvido.</p></div><span class="tag">Agente de IA</span><span class="chev"><svg viewBox="0 0 56 36"><use href="#chev"/></svg></span></a></li>
+        <li><a href="#projeto"><span class="n">03</span><div><h3>Nome do projeto três</h3><p>Uma linha sobre o problema resolvido.</p></div><span class="tag">Integração</span><span class="chev"><svg viewBox="0 0 56 36"><use href="#chev"/></svg></span></a></li>
+        <li><a href="#projeto"><span class="n">04</span><div><h3>Nome do projeto quatro</h3><p>Uma linha sobre o problema resolvido.</p></div><span class="tag">Processos</span><span class="chev"><svg viewBox="0 0 56 36"><use href="#chev"/></svg></span></a></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Experiência -->
+  <section class="slide teal" id="experiencia">
+    <div class="corners"><span>Portfólio</span><span>Experiência</span></div>
+    <div class="body">
+      <h2 class="giant">Experiência</h2>
+      <ol class="xp">
+        <li><span>Ano — atual</span><div><h3>Cargo · Empresa</h3><p>Principais responsabilidades e resultados.</p></div></li>
+        <li><span>Ano — Ano</span><div><h3>Cargo · Empresa</h3><p>Principais responsabilidades e resultados.</p></div></li>
+        <li><span>Ano — Ano</span><div><h3>Formação · Instituição</h3><p>Curso e área de estudo.</p></div></li>
+      </ol>
+    </div>
+    <div class="foot"><span>carolinabraganca.github.io</span><a class="chev" href="#contato" aria-label="Próxima seção"><svg viewBox="0 0 56 36"><use href="#chev"/></svg></a></div>
+  </section>
+
+  <!-- Contato -->
+  <section class="slide teal contact" id="contato" style="border-top:2px solid var(--cream)">
+    <div class="corners"><span>Portfólio</span><span>Contato</span></div>
+    <div class="body">
+      <dl>
+        <div><dt>E-mail</dt><dd><a href="#">seu@email.com</a></dd></div>
+        <div><dt>LinkedIn</dt><dd><a href="#">/in/seu-perfil</a></dd></div>
+        <div><dt>GitHub</dt><dd><a href="https://github.com/carolinabraganca">@carolinabraganca</a></dd></div>
+        <div><dt>WhatsApp</dt><dd><a href="#">(00) 00000-0000</a></dd></div>
+      </dl>
+      <h2 class="giant">Contato</h2>
+    </div>
+  </section>
+
+  <!-- Encerramento -->
+  <section class="slide cream thanks" style="min-height:70vh">
+    <div class="corners"><span>Portfólio</span><span></span></div>
+    <div class="body"><h2 class="giant">Vamos conversar?</h2><a class="btn" href="#contato" style="margin-top:32px">Me conta onde dói</a></div>
+    <div class="foot" style="justify-content:center"><span>© 2026 Carolina Bragança</span></div>
+  </section>
+</main>
+
+<!-- ===== PÁGINA DE PROJETO ===== -->
+<main class="view" id="projeto-view">
+  <section class="slide cream" style="min-height:auto;padding-top:96px">
+    <a href="#projetos" style="font-weight:700">« Todos os projetos</a>
+    <h1 class="giant" style="margin-top:24px">Nome do<br>projeto um</h1>
+    <p style="margin-top:20px;font-size:1.1rem">Resumo em duas linhas: qual era o problema, o que foi construído e o que mudou depois. [Texto provisório]</p>
+    <dl class="meta">
+      <div><dt>Cliente</dt><dd>Empresa</dd></div>
+      <div><dt>Ano</dt><dd>2026</dd></div>
+      <div><dt>Meu papel</dt><dd>Desenho e implementação</dd></div>
+      <div><dt>Ferramentas</dt><dd>Ferramenta A, B, C</dd></div>
+    </dl>
+    <div class="gallery"><div class="ph">imagem do projeto</div><div class="ph">imagem</div><div class="ph">imagem</div><div class="ph">imagem</div></div>
+  </section>
+  <section class="slide teal" style="min-height:auto;padding-top:72px;padding-bottom:72px">
+    <div class="cols">
+      <div><h3>Desafio</h3><p>Como o processo era feito antes e quanto custava em tempo e erros.</p></div>
+      <div><h3>Solução</h3><p>As decisões de desenho, as integrações e o que foi automatizado.</p></div>
+      <div><h3>Resultado</h3><p>O que mudou para o time e para o negócio depois da entrega.</p></div>
+    </div>
+    <div class="nums">
+      <div><b>00h</b>economizadas por mês</div>
+      <div><b>00%</b>menos erros manuais</div>
+      <div><b>00×</b>mais rápido</div>
+    </div>
+  </section>
+  <section class="slide cream" style="min-height:auto;padding-top:56px;padding-bottom:56px">
+    <a href="#projeto" class="foot" style="align-items:center"><div><span>Próximo projeto</span><h2 class="big">Projeto dois</h2></div><span class="chev"><svg viewBox="0 0 56 36"><use href="#chev"/></svg></span></a>
+  </section>
+</main>
+
+<script>
+  // "#projeto" abre a página de projeto; qualquer outro endereço mostra o site e rola até a seção
+  const home = document.getElementById('home');
+  const projeto = document.getElementById('projeto-view');
+  function show() {
+    const isProjeto = location.hash === '#projeto';
+    home.classList.toggle('on', !isProjeto);
+    projeto.classList.toggle('on', isProjeto);
+    if (isProjeto) { window.scrollTo(0, 0); return; }
+    const target = location.hash.length > 1 && document.querySelector(location.hash);
+    if (target) target.scrollIntoView();
+  }
+  window.addEventListener('hashchange', show);
+  show();
+
+  // Rolagem por seção: a roda do mouse (ou as setas) pula direto para a seção seguinte.
+  // Se a seção for mais alta que a tela, rola normalmente dentro dela até chegar ao fim.
+  let travando = false;
+  function pular(dir) {
+    const slides = [...home.querySelectorAll('.slide')];
+    const meio = innerHeight / 2;
+    const atual = slides.find((s) => { const r = s.getBoundingClientRect(); return r.top <= meio && r.bottom > meio; });
+    if (!atual) return false;
+    const r = atual.getBoundingClientRect();
+    if (dir > 0 && r.bottom > innerHeight + 4) return false;
+    if (dir < 0 && r.top < -4) return false;
+    const destino = slides[slides.indexOf(atual) + dir];
+    if (!destino) return false;
+    travando = true;
+    const maisAlta = destino.offsetHeight > innerHeight + 4;
+    destino.scrollIntoView({ behavior: 'smooth', block: dir < 0 && maisAlta ? 'end' : 'start' });
+    setTimeout(() => { travando = false; }, 900);
+    return true;
+  }
+  window.addEventListener('wheel', (e) => {
+    if (!home.classList.contains('on') || e.ctrlKey || !e.deltaY) return;
+    if (travando || pular(Math.sign(e.deltaY))) e.preventDefault();
+  }, { passive: false });
+  window.addEventListener('keydown', (e) => {
+    if (!home.classList.contains('on') || e.target.closest('input, textarea')) return;
+    const dir = { ArrowDown: 1, PageDown: 1, ' ': 1, ArrowUp: -1, PageUp: -1 }[e.key];
+    if (dir && (travando || pular(dir))) e.preventDefault();
+  });
+</script>
 </body>
 </html>

@@ -2,8 +2,4 @@
 
 Site de portfólio de Carolina Bragança, publicado com GitHub Pages em <https://carolinabraganca.github.io>.
 
-HTML, CSS e JavaScript puros, sem etapa de build: basta abrir o `index.html` no navegador.
-
-- `index.html` — conteúdo e seções
-- `assets/css/style.css` — estilos (tema claro/escuro automático)
-- `assets/js/main.js` — menu mobile e destaque da seção ativa
+Uma página só (`index.html`), com HTML, CSS e JavaScript no próprio arquivo, sem etapa de build: basta abrir no navegador. As fontes (Anton e Montserrat) vêm do Google Fonts.
