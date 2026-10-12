@@ -143,15 +143,16 @@
   .gallery .ph:nth-child(2) { grid-column: span 2; }
   .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 4vw, 56px); }
   .cols h3 { font-size: clamp(2rem, 4.5vw, 3.6rem); margin-bottom: 12px; }
-  .nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 64px; padding-top: 40px; border-top: 2px solid var(--cream); }
-  .nums b { display: block; font: 400 clamp(3rem, 8vw, 7rem)/1 var(--display); }
+  .nums { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 64px; padding-top: 40px; border-top: 2px solid var(--cream); }
+  .nums b { display: block; font: 400 clamp(3rem, 7vw, 6rem)/1 var(--display); margin-bottom: 8px; }
 
   .view { display: none; }
   .view.on { display: block; }
 
   @media (max-width: 780px) {
     .menu ul li.opt { display: none; }
-    .two, .cols, .nums { grid-template-columns: 1fr; }
+    .two, .cols { grid-template-columns: 1fr; }
+    .nums { grid-template-columns: 1fr 1fr; }
     .two .right { text-align: left; order: -1; }
     .split { flex-direction: column; }
     .split > div { padding: 72px var(--pad) 48px; }
@@ -278,20 +279,21 @@
       <div><dt>Cliente</dt><dd>Empresa</dd></div>
       <div><dt>Ano</dt><dd>2026</dd></div>
       <div><dt>Meu papel</dt><dd>Desenho e implementação</dd></div>
-      <div><dt>Ferramentas</dt><dd>n8n, Supabase, GitHub, Data Studio</dd></div>
+      <div><dt>Ferramentas</dt><dd>n8n, Supabase, GitHub, Google Gemini, Google Data Studio</dd></div>
     </dl>
     <video class="video" src="assets/banco-de-ideias.mp4" poster="assets/banco-de-ideias.jpg" muted loop playsinline controls preload="metadata" aria-label="Vídeo de 29 segundos mostrando o funcionamento do Banco de Ideias"></video>
   </section>
   <section class="slide teal" style="min-height:auto;padding-top:72px;padding-bottom:72px">
     <div class="cols">
-      <div><h3>Desafio</h3><p>Como o processo era feito antes e quanto custava em tempo e erros</p></div>
-      <div><h3>Solução</h3><p>As decisões de desenho, as integrações e o que foi automatizado</p></div>
-      <div><h3>Resultado</h3><p>O que mudou para o time e para o negócio depois da entrega</p></div>
+      <div><h3>Desafio</h3><p>As ideias de melhoria chegavam por canais informais, sem registro nem critério de avaliação, e muitas nem chegavam a ser apresentadas, porque o colaborador não sabia que podia opinar ou a quem recorrer, de modo que boas sugestões se perdiam antes de alcançar a gestão</p></div>
+      <div><h3>Solução</h3><p>Um fluxo automatizado recebe as ideias por formulário, utiliza inteligência artificial para avaliar impacto e viabilidade, verifica possíveis duplicidades, registra tudo em banco de dados e encaminha cada proposta ao responsável conforme a prioridade</p></div>
+      <div><h3>Resultado</h3><p>Todas as ideias passam a ser avaliadas com o mesmo critério e chegam aos responsáveis sem triagem manual, enquanto a gestão acompanha o volume, a pontuação e o status das propostas em um dashboard atualizado</p></div>
     </div>
     <div class="nums">
-      <div><b>00h</b>economizadas por mês</div>
-      <div><b>00%</b>menos erros manuais</div>
-      <div><b>00×</b>mais rápido</div>
+      <div><b>30s</b>em média para registrar uma ideia no formulário</div>
+      <div><b>5s</b>do envio da ideia ao aviso do responsável</div>
+      <div><b>100%</b>das ideias avaliadas com o mesmo critério</div>
+      <div><b>0</b>etapas manuais entre o envio e o encaminhamento</div>
     </div>
   </section>
   <section class="slide cream" style="min-height:auto;padding-top:56px;padding-bottom:56px">
