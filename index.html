@@ -55,8 +55,9 @@
   /* Capa */
   .cover .body { align-items: center; text-align: center; }
   .cover h1 { position: relative; }
-  .cover h1 { display: inline-block; text-align: left; padding-right: clamp(40px, 7vw, 110px); }
+  .cover h1 { display: inline-block; text-align: left; }
   .cover .ph { position: absolute; right: 0; top: 2%; width: clamp(90px, 15vw, 220px); aspect-ratio: 3 / 4; transform: translate(34%, 0) rotate(7deg); text-transform: none; font-family: var(--text); letter-spacing: 0; box-shadow: 0 18px 40px rgba(0,0,0,.25); }
+  .cover img.ph { display: block; height: auto; object-fit: cover; background: none; }
   .cover .sub { width: min(100%, 62vw); display: flex; justify-content: space-between; margin-top: clamp(24px, 3.6vw, 60px); font-weight: 700; }
 
   /* Duas colunas */
@@ -157,7 +158,8 @@
     .split { flex-direction: column; }
     .split > div { padding: 72px var(--pad) 48px; }
     .split .teal { text-align: left; align-items: flex-start; }
-    .cover .sub { width: 100%; flex-direction: column; gap: 4px; }
+    .cover img.ph { display: block; height: auto; object-fit: cover; background: none; }
+  .cover .sub { width: 100%; flex-direction: column; gap: 4px; }
     .cover h1 { display: flex; flex-direction: column-reverse; align-items: center; padding: 0; text-align: center; }
     .cover .ph { position: static; width: 130px; transform: rotate(5deg); margin-bottom: 28px; }
     .index a { grid-template-columns: 44px 1fr; }
@@ -193,7 +195,7 @@
   <section class="slide cream cover" id="inicio">
     <div class="corners"><span>Portfólio</span><span>Automação &amp; IA</span></div>
     <div class="body">
-      <h1 class="giant">Carolina<br>Bragança<span class="ph">sua foto</span></h1>
+      <h1 class="giant">Carolina<br>Bragança</h1>
       <div class="sub"><span>Automação &amp; Inteligência Artificial</span><span>carolinabraganca.github.io</span></div>
     </div>
     <div class="foot"><span></span><a class="chev" href="#como" aria-label="Próxima seção"><svg viewBox="0 0 56 36"><use href="#chev"/></svg></a></div>
